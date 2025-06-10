@@ -1,84 +1,108 @@
-# Turborepo starter
+b7-web Monorepo
+Bem-vindo ao monorepo b7-web. Este repositório é gerenciado com Turborepo e contém nossas aplicações web, serviços de backend e bibliotecas de código compartilhado.
 
-This Turborepo starter is maintained by the Turborepo core team.
+O que há aqui dentro?
+Este monorepo utiliza Turborepo para gerenciar múltiplos projetos com eficiência. A estrutura é dividida da seguinte forma:
 
-## Using this example
+Estrutura de Pastas
+apps/: Contém as aplicações "finais", que são implantáveis.
 
-Run the following command:
+Aplicações Frontend: Construídas com React, Vite, Styled-Components, React-Router e Redux.
 
-```sh
-npx create-turbo@latest
-```
+Serviços Backend: Aplicações em Python utilizando o framework Flask.
 
-## What's inside?
+packages/: Contém códigos compartilhados, utilizados pelas aplicações em apps/.
 
-This Turborepo includes the following packages/apps:
+@repo/ui: Biblioteca de componentes React compartilhados.
 
-### Apps and Packages
+@repo/eslint-config: Configurações do ESLint para todo o monorepo.
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+@repo/typescript-config: Arquivos tsconfig.json base, utilizados pelos outros projetos.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+@repo/database: Módulos para interação com o banco de dados (SQL).
 
-### Utilities
+docs/: Contém a documentação do projeto.
 
-This Turborepo has some additional tools already setup for you:
+Tecnologias e Ferramentas Principais
+Este monorepo vem com um conjunto de ferramentas para garantir a qualidade e a consistência do código:
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+Turborepo: Orquestrador de tarefas e sistema de cache de alta performance.
 
-### Build
+TypeScript: Para tipagem estática e um desenvolvimento mais seguro.
 
-To build all apps and packages, run the following command:
+ESLint: Para identificar e corrigir padrões problemáticos no código (linting).
 
-```
-cd my-turborepo
-pnpm build
-```
+Prettier: Para garantir um estilo de formatação de código consistente.
 
-### Develop
+Changesets: Para gerenciar versionamento, changelogs e o processo de publicação dos pacotes.
 
-To develop all apps and packages, run the following command:
+Primeiros Passos
+Siga os passos abaixo para configurar o ambiente de desenvolvimento.
 
-```
-cd my-turborepo
-pnpm dev
-```
+Clone o repositório:
 
-### Remote Caching
+git clone https://github.com/branding7agencia/b7_web.git
+cd b7-web
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+Instale as dependências:
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+npm install
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+Scripts Úteis
+Todos os comandos devem ser executados a partir da raiz do monorepo, utilizando npm run.
 
-```
-cd my-turborepo
+Desenvolvimento: Inicia os servidores de desenvolvimento de todas as aplicações.
+
+npm run dev
+
+Build: Gera as versões de produção de todas as aplicações e pacotes.
+
+npm run build
+
+Lint: Executa o ESLint em todos os pacotes e aplicações.
+
+npm run lint
+
+Versionamento e Publicação
+Quando você fizer uma alteração que precise ser lançada, utilize o Changesets:
+
+Adicione uma mudança:
+Este comando interativo perguntará quais pacotes foram modificados, o tipo de mudança (patch, minor, major) e uma descrição.
+
+npx changeset add
+
+Crie a versão:
+Este comando consome os "changesets", atualiza a versão nos package.json e gera os CHANGELOG.md.
+
+npx changeset version
+
+Publique os pacotes:
+(Se aplicável) Publica os pacotes que foram atualizados no registro npm.
+
+npx changeset publish
+
+Remote Caching
+Para acelerar ainda mais os builds, este projeto está configurado para usar o Remote Caching da Vercel.
+
+Faça o login na sua conta Vercel:
+
 npx turbo login
-```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+Vincule o projeto ao Remote Cache:
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
 npx turbo link
-```
 
-## Useful Links
+Links Úteis
+Para saber mais sobre as ferramentas utilizadas:
 
-Learn more about the power of Turborepo:
+Tasks no Turborepo
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+Caching no Turborepo
+
+Remote Caching no Turborepo
+
+Documentação do Changesets
+
+Documentação do Vite
+
+Documentação do Flask
