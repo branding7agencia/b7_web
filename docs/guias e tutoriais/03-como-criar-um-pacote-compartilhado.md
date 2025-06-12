@@ -1,8 +1,8 @@
 # ADR-03: Como Criar um Pacote Compartilhado (Shared Package)
 
--   **Status**: Aceito
--   **Data**: 2025-06-09
--   **Autores**: dev Tàrcio Teixeira
+- **Status**: Aceito
+- **Data**: 2025-06-09
+- **Autores**: dev Tàrcio Teixeira
 
 ## Contexto e Problema
 
@@ -42,6 +42,7 @@ Certifique-se de que o `package.json` na raiz do seu monorepo está configurado 
 3.  Dentro de `packages/ui-kit`, crie uma pasta `src` e um arquivo `package.json`.
 
 A estrutura ficará assim:
+
 ```
 meu-monorepo/
 |-- apps/
@@ -58,6 +59,7 @@ meu-monorepo/
 Este é o passo mais importante. Ele define como seu pacote é identificado, quais são seus pontos de entrada e como ele é "buildado".
 
 **`packages/ui-kit/package.json`**
+
 ```json
 {
   "name": "@b7-web/ui-kit",
@@ -91,17 +93,20 @@ Este é o passo mais importante. Ele define como seu pacote é identificado, qua
   }
 }
 ```
+
 **Pontos Chave:**
-* `"name"`: O nome escopado do pacote. É assim que suas aplicações irão importá-lo.
-* `"main"`, `"module"`, `"types"`, `"exports"`: Definem os pontos de entrada do pacote após o build. Isso garante que ele funcione com diferentes sistemas de módulos (ESM e CommonJS).
-* `"scripts"`: `build` para gerar os arquivos e `dev` para observar mudanças e rebuildar automaticamente.
-* `"peerDependencies"`: **MUITO IMPORTANTE!** `react` é uma dependência de pares. Isso diz ao seu pacote para usar a instância do React da aplicação que o está consumindo, evitando o erro de ter múltiplas cópias do React na mesma aplicação.
+
+- `"name"`: O nome escopado do pacote. É assim que suas aplicações irão importá-lo.
+- `"main"`, `"module"`, `"types"`, `"exports"`: Definem os pontos de entrada do pacote após o build. Isso garante que ele funcione com diferentes sistemas de módulos (ESM e CommonJS).
+- `"scripts"`: `build` para gerar os arquivos e `dev` para observar mudanças e rebuildar automaticamente.
+- `"peerDependencies"`: **MUITO IMPORTANTE!** `react` é uma dependência de pares. Isso diz ao seu pacote para usar a instância do React da aplicação que o está consumindo, evitando o erro de ter múltiplas cópias do React na mesma aplicação.
 
 ### Passo 3: Criar Código Compartilhado (Exemplos)
 
 Dentro da pasta `packages/ui-kit/src/`, crie seus componentes, hooks, etc.
 
 **`packages/ui-kit/src/Button.tsx`**
+
 ```tsx
 import React from 'react';
 
@@ -121,7 +126,7 @@ export const Button = ({ children, onClick }: ButtonProps) => {
         color: 'white',
         border: 'none',
         borderRadius: '5px',
-        cursor: 'pointer'
+        cursor: 'pointer',
       }}
     >
       {children}
@@ -144,6 +149,7 @@ export * from './Button';
 ### Passo 4: Configurar o Build e o TypeScript
 
 1.  **Instale as dependências** que você listou no `package.json` do pacote.
+
     ```bash
     # Na raiz do monorepo, o npm instalará as dependências para todos os workspaces
     npm install
@@ -152,6 +158,7 @@ export * from './Button';
 2.  Crie um arquivo `tsconfig.json` dentro do pacote.
 
     **`packages/ui-kit/tsconfig.json`**
+
     ```json
     {
       "extends": "../../tsconfig.base.json", // Estenda a configuração base da raiz
@@ -163,8 +170,8 @@ export * from './Button';
       "exclude": ["node_modules", "dist"]
     }
     ```
-    *(**Nota**: Você pode criar um `tsconfig.base.json` na raiz para compartilhar configurações comuns de TypeScript entre todos os seus pacotes e apps).*
 
+    _(**Nota**: Você pode criar um `tsconfig.base.json` na raiz para compartilhar configurações comuns de TypeScript entre todos os seus pacotes e apps)._
 
 ### Passo 5: Usar o Pacote em uma Aplicação
 
@@ -173,6 +180,7 @@ Agora, vamos usar nosso novo `<Button>` em uma aplicação existente, como a `la
 1.  **Adicione o pacote como dependência** no `package.json` da aplicação.
 
     **`apps/landing-page/package.json`**
+
     ```json
     {
       "name": "@b7-web/landing-page",
@@ -180,14 +188,16 @@ Agora, vamos usar nosso novo `<Button>` em uma aplicação existente, como a `la
       "dependencies": {
         "@b7-web/ui-kit": "workspace:*", // <-- ADICIONE ESTA LINHA
         "react": "^18.2.0",
-        "react-dom": "^18.2.0",
+        "react-dom": "^18.2.0"
         // ... outras dependências
       }
     }
     ```
+
     O protocolo `workspace:*` é a mágica do NPM que cria o link para o seu pacote local.
 
 2.  **Instale as dependências novamente** a partir da raiz para que o NPM crie o link.
+
     ```bash
     # Na raiz do monorepo
     npm install
@@ -196,6 +206,7 @@ Agora, vamos usar nosso novo `<Button>` em uma aplicação existente, como a `la
 3.  **Importe e use seu componente** na aplicação.
 
     **`apps/landing-page/src/App.tsx` (exemplo)**
+
     ```tsx
     import { Button } from '@b7-web/ui-kit'; // <-- Importe do seu pacote!
 
@@ -221,6 +232,7 @@ Agora, vamos usar nosso novo `<Button>` em uma aplicação existente, como a `la
 Para trabalhar de forma eficiente:
 
 1.  **Terminal 1:** Inicie o processo de build em modo "watch" para seu pacote compartilhado.
+
     ```bash
     # Na raiz do monorepo
     npm run dev -w @b7-web/ui-kit

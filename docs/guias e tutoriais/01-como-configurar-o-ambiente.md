@@ -6,9 +6,9 @@ Bem-vindo(a) ao projeto! Este guia contém todos os passos necessários para con
 
 Antes de começar, garanta que você tenha as seguintes ferramentas instaladas na sua máquina.
 
-* **Git:** Essencial para controle de versão.
-* **Node.js:** O projeto requer a versão 18 ou superior, conforme definido no `package.json`. Ao instalar o Node.js, o `npm` (nosso gerenciador de pacotes) já será instalado junto.
-    * Você pode baixar a versão mais recente do Node.js [aqui](https://nodejs.org/en/download).
+- **Git:** Essencial para controle de versão.
+- **Node.js:** O projeto requer a versão 18 ou superior, conforme definido no `package.json`. Ao instalar o Node.js, o `npm` (nosso gerenciador de pacotes) já será instalado junto.
+  - Você pode baixar a versão mais recente do Node.js [aqui](https://nodejs.org/en/download).
 
 ## 2. Passos para a Instalação
 
@@ -35,7 +35,8 @@ Agora, instale todas as dependências do monorepo. O `npm` irá ler os `workspac
 ```bash
 npm install
 ```
-*Este comando pode levar alguns minutos na primeira vez que for executado.*
+
+_Este comando pode levar alguns minutos na primeira vez que for executado._
 
 ### Passo 2.3: Configurar Variáveis de Ambiente
 
@@ -64,21 +65,21 @@ Este comando usa o script `dev` do `package.json`, que por sua vez executa `turb
 
 Todos os scripts principais são executados com `npm run` a partir da raiz do projeto.
 
-* **Buildar o projeto para produção:**
-    ```bash
-    npm run build
-    ```
-* **Rodar o linter para checar a qualidade do código:**
-    ```bash
-    npm run lint
-    ```
-* **Formatar o código com o Prettier:**
-    ```bash
-    npm run format
-    ```
-* **Checar os tipos do TypeScript:**
-    ```bash
-    npm run check-types
-    ```
+- **Buildar o projeto para produção:**
+  ```bash
+  npm run build
+  ```
+- **Rodar o linter para checar a qualidade do código:**
+  ```bash
+  npm run lint
+  ```
+- **Formatar o código com o Prettier:**
+  ```bash
+  npm run format
+  ```
+- **Checar os tipos do TypeScript:**
+  ```bash
+  npm run check-types
+  ```
 
 Se tudo ocorreu bem, seu ambiente está 100% configurado e pronto para o desenvolvimento!

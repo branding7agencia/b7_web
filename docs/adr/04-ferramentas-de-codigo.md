@@ -1,8 +1,8 @@
 # ADR-003: Estrutura de Pastas do Monorepo
 
-* **Status:** Aceito
-* **Data:** 2025-06-10
-* **Decisor(es):** [dev Tárcio Teixeira]
+- **Status:** Aceito
+- **Data:** 2025-06-10
+- **Decisor(es):** [dev Tárcio Teixeira]
 
 **Contexto e problema**
 Com múltiplos desenvolvedores e projetos coexistindo no monorepo, há um risco significativo de inconsistências no código. Problemas como estilos de formatação divergentes, falta de padronização na escrita de código e a não detecção de erros comuns em tempo de desenvolvimento podem comprometer a legibilidade, a manutenção e a qualidade geral do software. Precisamos de um sistema automatizado para impor padrões de qualidade.

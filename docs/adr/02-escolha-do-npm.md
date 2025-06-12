@@ -1,8 +1,8 @@
 # ADR-002: Escolha do NPM como Gerenciador de Pacotes
 
-* **Status:** Aceito
-* **Data:** 2025-06-09
-* **Decisor(es):** [dev Tárcio Teixeira]
+- **Status:** Aceito
+- **Data:** 2025-06-09
+- **Decisor(es):** [dev Tárcio Teixeira]
 
 ## Contexto e Problema
 
@@ -26,14 +26,14 @@ A escolha pelo NPM foi baseada em sua simplicidade, estabilidade e integração 
 
 ### Vantagens
 
-* **Padrão do Ecossistema:** O NPM é o gerenciador de pacotes oficial do Node.js e vem **instalado junto com ele**. Isso simplifica radicalmente a configuração do ambiente para um novo desenvolvedor, que não precisa instalar ferramentas adicionais.
-* **Maturidade e Estabilidade:** Sendo a ferramenta mais antiga e utilizada, o NPM é extremamente estável, bem documentado e possui compatibilidade máxima com todo o ecossistema JavaScript/TypeScript.
-* **Suporte Robusto a Workspaces:** As versões modernas do NPM (7+) possuem suporte nativo e eficiente para a funcionalidade de `workspaces`, que é o requisito fundamental para a gestão de um monorepo.
-* **Performance Competitiva:** Embora historicamente visto como mais lento, as versões recentes do NPM trouxeram melhorias drásticas de performance e cacheamento (`npm ci`), diminuindo significativamente a diferença para seus concorrentes.
+- **Padrão do Ecossistema:** O NPM é o gerenciador de pacotes oficial do Node.js e vem **instalado junto com ele**. Isso simplifica radicalmente a configuração do ambiente para um novo desenvolvedor, que não precisa instalar ferramentas adicionais.
+- **Maturidade e Estabilidade:** Sendo a ferramenta mais antiga e utilizada, o NPM é extremamente estável, bem documentado e possui compatibilidade máxima com todo o ecossistema JavaScript/TypeScript.
+- **Suporte Robusto a Workspaces:** As versões modernas do NPM (7+) possuem suporte nativo e eficiente para a funcionalidade de `workspaces`, que é o requisito fundamental para a gestão de um monorepo.
+- **Performance Competitiva:** Embora historicamente visto como mais lento, as versões recentes do NPM trouxeram melhorias drásticas de performance e cacheamento (`npm ci`), diminuindo significativamente a diferença para seus concorrentes.
 
 ### Desvantagens e Trade-offs
 
-* **Eficiência de Disco:** Comparado ao `pnpm`, o NPM pode consumir mais espaço em disco, pois não utiliza a mesma arquitetura de links simbólicos para compartilhar dependências entre projetos. Para a escala atual do nosso projeto, este não é um fator crítico.
+- **Eficiência de Disco:** Comparado ao `pnpm`, o NPM pode consumir mais espaço em disco, pois não utiliza a mesma arquitetura de links simbólicos para compartilhar dependências entre projetos. Para a escala atual do nosso projeto, este não é um fator crítico.
 
 ## Alternativas Consideradas
 

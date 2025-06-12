@@ -1,8 +1,8 @@
 # ADR-002: Escolha do NPM como Gerenciador de Pacotes
 
-* **Status:** Aceito
-* **Data:** 2025-06-10
-* **Decisor(es):** dev Tárcio Teixeira
+- **Status:** Aceito
+- **Data:** 2025-06-10
+- **Decisor(es):** dev Tárcio Teixeira
 
 **Contexto e Problema**
 los pacotes publicáveis, o processo de decidir quais pacotes precisam de uma nova versão, atualizar seus package.json, gerar CHANGELOGs e publicá-los no registro (npm) é complexo, manual e extremamente propenso a erros humanos. Fazer isso sem uma ferramenta dedicada pode levar a versões incorretas, changelogs incompletos ou falhas na publicação.

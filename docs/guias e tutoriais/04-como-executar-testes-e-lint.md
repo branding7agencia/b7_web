@@ -1,8 +1,8 @@
 # ADR-04: Como Executar Testes e Lint
 
--   **Status**: Aceito
--   **Data**: 2025-06-09
--   **Autores**: dev Tácio Teixeira
+- **Status**: Aceito
+- **Data**: 2025-06-09
+- **Autores**: dev Tácio Teixeira
 
 ## Contexto e Problema
 
@@ -101,6 +101,7 @@ A configuração de testes é feita em cada pacote ou app que contenha testes. I
 2.  **Crie um arquivo de configuração** para o Vitest dentro do pacote `ui-kit`.
 
     **`packages/ui-kit/vite.config.ts`**
+
     ```ts
     /// <reference types="vitest" />
     import { defineConfig } from 'vite';
@@ -117,6 +118,7 @@ A configuração de testes é feita em cada pacote ou app que contenha testes. I
 3.  (Opcional) Crie o arquivo de setup (`setup.ts`) se precisar de imports globais para os testes.
 
     **`packages/ui-kit/src/test/setup.ts`**
+
     ```ts
     import '@testing-library/jest-dom';
     ```
@@ -124,6 +126,7 @@ A configuração de testes é feita em cada pacote ou app que contenha testes. I
 4.  **Adicione o script de teste** ao `package.json` do `ui-kit`.
 
     **`packages/ui-kit/package.json`**
+
     ```json
     {
       "scripts": {
@@ -137,6 +140,7 @@ A configuração de testes é feita em cada pacote ou app que contenha testes. I
 5.  **Escreva seu primeiro teste!**
 
     **`packages/ui-kit/src/Button.test.tsx`**
+
     ```tsx
     import { render, screen } from '@testing-library/react';
     import { Button } from './Button';
@@ -145,8 +149,10 @@ A configuração de testes é feita em cada pacote ou app que contenha testes. I
     describe('Button Component', () => {
       it('should render the button with the correct text', () => {
         render(<Button onClick={() => {}}>Clique Aqui</Button>);
-        
-        const buttonElement = screen.getByRole('button', { name: /Clique Aqui/i });
+
+        const buttonElement = screen.getByRole('button', {
+          name: /Clique Aqui/i,
+        });
         expect(buttonElement).toBeInTheDocument();
       });
     });
@@ -159,24 +165,27 @@ A configuração de testes é feita em cada pacote ou app que contenha testes. I
 Com tudo configurado, você pode executar os comandos a partir da **raiz do monorepo**.
 
 ### Executar Lint em todo o projeto
+
 ```bash
 npm run lint
 ```
 
 ### Executar Testes
 
-* **Para um pacote específico:**
-    ```bash
-    npm test -w @b7-web/ui-kit
-    ```
+- **Para um pacote específico:**
 
-* **Para TODOS os pacotes e apps de uma vez:**
-    Adicione um script principal de teste no `package.json` da **raiz**:
+  ```bash
+  npm test -w @b7-web/ui-kit
+  ```
 
-    ```json
-    {
-      "scripts": {
-        "test": "npm test -ws"
-        // ... outros scripts
-      }
+- **Para TODOS os pacotes e apps de uma vez:**
+  Adicione um script principal de teste no `package.json` da **raiz**:
+
+  ```json
+  {
+    "scripts": {
+      "test": "npm test -ws"
+      // ... outros scripts
     }
+  }
+  ```

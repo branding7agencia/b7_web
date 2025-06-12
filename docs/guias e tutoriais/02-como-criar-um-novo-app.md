@@ -1,18 +1,18 @@
 # ADR-02: Como Criar uma Nova Aplicação no Monorepo
 
--   **Status**: Aceito
--   **Data**: 2025-06-07
--   **Autores**: dev Tárcio Teixeira
+- **Status**: Aceito
+- **Data**: 2025-06-07
+- **Autores**: dev Tárcio Teixeira
 
 ## Contexto e Problema
 
 Para manter a consistência e acelerar o desenvolvimento de novas features ou produtos, precisamos de um processo padronizado para criar novas aplicações (apps) dentro do nosso monorepo. Este guia define o passo a passo para configurar uma nova aplicação React com o nosso stack tecnológico padrão:
 
--   **UI Library**: React
--   **Build Tool**: Vite
--   **Estilização**: Styled Components
--   **Roteamento**: React Router DOM
--   **Gerenciamento de Estado**: React Redux com Redux Toolkit
+- **UI Library**: React
+- **Build Tool**: Vite
+- **Estilização**: Styled Components
+- **Roteamento**: React Router DOM
+- **Gerenciamento de Estado**: React Redux com Redux Toolkit
 
 ## Decisão
 
@@ -33,10 +33,7 @@ Siga este guia para adicionar uma nova aplicação ao monorepo.
     {
       "name": "meu-monorepo",
       "private": true,
-      "workspaces": [
-        "apps/*",
-        "packages/*"
-      ]
+      "workspaces": ["apps/*", "packages/*"]
     }
     ```
 
@@ -152,6 +149,7 @@ _(Esta seção permanece idêntica à versão anterior, pois o código de config
 Crie `src/styles/theme.ts` e `src/styles/GlobalStyles.ts`.
 
 **`src/styles/theme.ts`**
+
 ```typescript
 export const theme = {
   colors: {
@@ -167,6 +165,7 @@ export const theme = {
 ```
 
 **`src/styles/GlobalStyles.ts`**
+
 ```typescript
 import { createGlobalStyle } from 'styled-components';
 
@@ -185,6 +184,7 @@ export const GlobalStyles = createGlobalStyle`
 #### b Redux (Store)
 
 **`src/app/store.ts`**
+
 ```typescript
 import { configureStore } from '@reduxjs/toolkit';
 // Importe seus reducers/slices aqui quando criá-los
@@ -204,6 +204,7 @@ export type AppDispatch = typeof store.dispatch;
 #### c React Router
 
 **`src/app/routes.tsx`**
+
 ```typescript
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
@@ -259,16 +260,18 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     # Na raiz do monorepo
     npm install
     ```
+
 3.  Execute o script `dev` do novo app usando a flag `-w` (ou `--workspace`).
 
     ```bash
     # A flag -w diz ao NPM para rodar o comando no workspace especificado
     npm run dev -w @meu-workspace/<nome-do-app>
     ```
+
 4.  Abra o navegador no endereço indicado (geralmente `http://localhost:5173`). Se você vir sua página de exemplo funcionando, a configuração está correta!
 
 ### Próximos Passos
 
--   Adicione o novo app aos scripts da raiz do `package.json` para facilitar a execução de tarefas comuns.
--   Configure o pipeline de CI/CD para buildar e testar a nova aplicação.
--   Comece a desenvolver suas features criando `slices` no Redux e componentes de página.
+- Adicione o novo app aos scripts da raiz do `package.json` para facilitar a execução de tarefas comuns.
+- Configure o pipeline de CI/CD para buildar e testar a nova aplicação.
+- Comece a desenvolver suas features criando `slices` no Redux e componentes de página.

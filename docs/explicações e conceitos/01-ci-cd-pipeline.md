@@ -12,11 +12,12 @@ O acrônimo CI/CD se divide em duas partes principais:
 
 ### 1. CI: Integração Contínua (Continuous Integration)
 
--   **O que é?** A prática de desenvolvedores mesclarem (integrarem) suas alterações de código em um repositório central várias vezes ao dia.
--   **O Objetivo:** Detectar problemas de integração o mais cedo possível.
--   **Como Funciona?** Cada vez que um novo código é enviado (em um *commit* ou *pull request*), um processo automatizado é disparado para "construir" e testar a aplicação. Se o novo código quebrar algo, a equipe é notificada imediatamente.
+- **O que é?** A prática de desenvolvedores mesclarem (integrarem) suas alterações de código em um repositório central várias vezes ao dia.
+- **O Objetivo:** Detectar problemas de integração o mais cedo possível.
+- **Como Funciona?** Cada vez que um novo código é enviado (em um _commit_ ou _pull request_), um processo automatizado é disparado para "construir" e testar a aplicação. Se o novo código quebrar algo, a equipe é notificada imediatamente.
 
 **No nosso projeto, a etapa de CI corresponde a:**
+
 1.  Instalar todas as dependências (`npm install`).
 2.  Verificar a qualidade e o estilo do código (`npm run lint`).
 3.  Executar todos os testes automatizados (`npm test`).
@@ -26,13 +27,13 @@ Se todas essas etapas passarem, temos alta confiança de que o código tem quali
 
 ### 2. CD: Entrega e Implantação Contínuas (Continuous Delivery & Deployment)
 
--   **O que é?** É a fase seguinte à CI. Depois que o código foi integrado e passou em todos os testes, a etapa de CD cuida de prepará-lo e enviá-lo para os usuários.
+- **O que é?** É a fase seguinte à CI. Depois que o código foi integrado e passou em todos os testes, a etapa de CD cuida de prepará-lo e enviá-lo para os usuários.
 
 Existem dois "sabores" de CD:
 
--   **Entrega Contínua (Continuous Delivery):** A pipeline automatiza a preparação da versão final da aplicação (o "pacote de implantação"). Essa versão fica pronta para ser implantada em produção com um **clique manual**. Essa abordagem dá à equipe o controle sobre *quando* lançar a nova versão.
+- **Entrega Contínua (Continuous Delivery):** A pipeline automatiza a preparação da versão final da aplicação (o "pacote de implantação"). Essa versão fica pronta para ser implantada em produção com um **clique manual**. Essa abordagem dá à equipe o controle sobre _quando_ lançar a nova versão.
 
--   **Implantação Contínua (Continuous Deployment):** Este é o nível mais avançado. Se o código passar por todas as etapas de CI, ele é **implantado automaticamente em produção**, sem qualquer intervenção humana. Isso exige uma suíte de testes extremamente robusta e confiável.
+- **Implantação Contínua (Continuous Deployment):** Este é o nível mais avançado. Se o código passar por todas as etapas de CI, ele é **implantado automaticamente em produção**, sem qualquer intervenção humana. Isso exige uma suíte de testes extremamente robusta e confiável.
 
 **Para nosso projeto, começaremos com a Entrega Contínua (manual-click-to-deploy), que já é um avanço imenso.**
 
@@ -51,14 +52,15 @@ A grande vantagem e o desafio de um monorepo é que temos múltiplos projetos (`
 Este é um exemplo prático de como nosso pipeline funciona. Ele define os passos para validar o código e, em seguida, um passo para implantar uma de nossas aplicações (ex: a `landing-page`) em um serviço como a Vercel.
 
 **.github/workflows/ci-cd.yml**
+
 ```yml
 name: Monorepo CI/CD
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   # --- Etapa de CI: Validar a Saúde do Código ---
@@ -91,7 +93,7 @@ jobs:
     runs-on: ubuntu-latest
     # Roda apenas quando há um push na branch main
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -101,7 +103,7 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
-      
+
       - name: Install Dependencies
         run: npm install
 
@@ -119,9 +121,11 @@ jobs:
 
 ## Benefícios de um Pipeline de CI/CD
 
--   **Velocidade:** Permite entregar novas features e correções de bugs aos usuários de forma muito mais rápida.
--   **Confiabilidade:** Reduz drasticamente a chance de erros humanos no processo de deploy e garante que bugs sejam pegos pelos testes automatizados antes de chegarem à produção.
--   **Consistência:** Garante que todo código passa pelo mesmo processo de validação e implantação.
--   **Produtividade:** Libera os desenvolvedores da tarefa manual e estressante de fazer deploy, permitindo que foquem em criar valor para o produto.
+- **Velocidade:** Permite entregar novas features e correções de bugs aos usuários de forma muito mais rápida.
+- **Confiabilidade:** Reduz drasticamente a chance de erros humanos no processo de deploy e garante que bugs sejam pegos pelos testes automatizados antes de chegarem à produção.
+- **Consistência:** Garante que todo código passa pelo mesmo processo de validação e implantação.
+- **Produtividade:** Libera os desenvolvedores da tarefa manual e estressante de fazer deploy, permitindo que foquem em criar valor para o produto.
+
+```
 
 ```
