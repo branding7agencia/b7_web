@@ -2,7 +2,6 @@
 
 name: CI
 
-# Define quando o workflow deve ser executado
 on:
   push:
     branches:
@@ -13,37 +12,36 @@ on:
 
 jobs:
   build_and_test:
-    # Define o sistema operacional que será usado
     runs-on: ubuntu-latest
 
     steps:
       # 1. Clona o repositório
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # 2. Configura o Node.js
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18' # Use a versão do Node que seu projeto utiliza
-
-      # 3. Instala o npm (se necessário, embora geralmente venha com o Node)
-      #    e configura o cache para as dependências
-      - name: Install npm and Cache Dependencies
-        uses: actions/setup-node@v3
+      # 2. Configura o Node.js e o cache do NPM em um único passo
+      - name: Set up Node.js and cache dependencies
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
+          # Configura o cache para o gerenciador de pacotes npm
+          # Isso acelera as instalações futuras
           cache: 'npm'
 
-      # 4. Instala as dependências do projeto
+      # 3. Instala as dependências do projeto
       - name: Install Dependencies
         run: npm install
 
-      # 5. Executa o lint para verificar a qualidade do código
+      # 4. Executa o lint para verificar a qualidade do código
       - name: Run Lint
         run: npm run lint
 
-      # 6. Executa o build utilizando Turborepo
-      #    O turbo já usará o cache local e remoto (se configurado)
+      # 5. Executa o build utilizando Turborepo
       - name: Build packages
         run: npm run build
+
+      # 6. SUGESTÃO: Adicione um passo de teste
+      # O nome do seu job é "build_and_test", então um passo de teste é esperado.
+      # Se você tiver testes, adicione o comando aqui.
+      - name: Run Tests
+        run: npm run test # ou o comando que você usa para rodar testes
