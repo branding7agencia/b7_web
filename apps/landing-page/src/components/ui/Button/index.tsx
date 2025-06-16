@@ -1,12 +1,8 @@
 import React from "react";
 import { StylesButton } from "./styles";
+import { CardProps } from "../../../types/Card.types";
 
-interface ButtonProps {
-    isActive?: boolean;
-    text: string;
-}
-
-const Button: React.FC<ButtonProps> = ({isActive, text}) => {
+const Button: React.FC<CardProps> = ({isActive, text}: CardProps) => {
     return(
         <StylesButton isActive={isActive}>
             {text}

@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import { theme } from "../../../styles/theme";
 
-interface ButtonProps {
-    isActive?: boolean
-}
+import { StylesProps } from "../../../types/styled.types";
 
-export const StylesButton = styled.button<ButtonProps>`
+export const StylesButton = styled.button<StylesProps>`
     width: 272px;
     padding: 16px;
     border-radius: 32px;
