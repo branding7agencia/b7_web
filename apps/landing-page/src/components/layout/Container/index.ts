@@ -7,14 +7,14 @@ interface ContainerProps {
 
 const Container = styled.div<ContainerProps>`
     height: 100vh;
-    width: 100vw;
-    padding: 30%;
-    background-color: ${props => 
-        props.hasBackground ? theme.colors.fundo : theme.colors.fundo2
-    };
-
-    @media (max-width:768px){
-        padding: 10%;
+    padding:56px; 
+    /*Selecionando o filho direto e aplicando estilos base*/
+    & > :first-child {
+        background-color: ${props => 
+            props.hasBackground ? theme.colors.fundo : theme.colors.fundo2
+        };
+        height: 100%;
+        border-radius: 24px;
     }
 `
 

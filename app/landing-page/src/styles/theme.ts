@@ -1,4 +1,3 @@
-
 export const theme = {
     colors: {
         branco: '#f9f6ff',
@@ -6,8 +5,7 @@ export const theme = {
         roxo2: '#6648a4',
         rosa: '#e615ff',
         fundo: '#100a18',
-        fundo2: '#05010f',
-        preto: '#000'
+        fundo2: '#05010f'
     },
     fonts: {
         main: 'sans-serif',

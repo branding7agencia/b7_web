@@ -1,8 +1,11 @@
+import Button from "./components/ui/Button/index";
+import { GlobalStyle } from "./styles/GlobalStyles";
+
 function App() {
   return (
     <>
-      <h1>Olá mundo</h1>
-      <p>Este é parágrafo do site b7</p>
+      <GlobalStyle />
+      <Button text="ENTRAR EM CONTATO" isActive={true}/>
     </>
   );
 }
