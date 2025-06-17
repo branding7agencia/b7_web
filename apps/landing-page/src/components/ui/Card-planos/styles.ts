@@ -11,21 +11,21 @@ export const StyleCardPlans = styled.div<StylesProps>`
     border: 1x solid ${theme.colors.roxo2};
     background-color: ${(props) => props.isActive 
         ? theme.colors.fundo 
-        : theme.colors.fundo2};
+        : theme.colors.fundo2}; 
+        background-color: ${theme.colors.fundo};
     display: flex;
     flex-direction: column;
-    gap: 32px;
-
-    p{
-        font-size: 14px;
-    }
+    gap: 24px;
+    font-family: ${theme.fonts.paragrafos};
 
     .head{
         display: flex;
         flex-direction: column;
         gap: 24px;
+        font-family: ${theme.fonts.main};
         h3{
             font-size: 28px;
+            font-weight: 700;
         }
         .price{
             display: flex;
@@ -37,5 +37,28 @@ export const StyleCardPlans = styled.div<StylesProps>`
                 color: ${theme.colors.roxo};
             }
         }
+    }
+
+    p{
+        font-size: 14px;
+    }
+
+    ul{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        list-style: none;
+        li{
+            display: flex;
+            gap: 8px;
+            font-size: 16px;
+            img{
+                width: 18px;
+            }
+        }
+    }
+
+    span{
+        color: ${theme.colors.rosa};
     }
 `
