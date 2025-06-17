@@ -20,7 +20,7 @@ export const StylesButton = styled.button<StylesProps>`
     /*Pseudo seletor para deixar o botão dinâmico*/
     &:hover{
         background-color: ${(props) => props.isActive ?
-            theme.colors.branco : theme.colors.roxo2};
+            theme.colors.branco : theme.colors.roxo};
         color: ${(props) => props.isActive ? 
             theme.colors.roxo2 : theme.colors.branco};
     }

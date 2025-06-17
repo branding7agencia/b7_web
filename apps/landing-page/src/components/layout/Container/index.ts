@@ -7,7 +7,8 @@ interface ContainerProps {
 
 const Container = styled.div<ContainerProps>`
     height: 100vh;
-    padding:56px; 
+    padding:24px; 
+    
     /*Selecionando o filho direto e aplicando estilos base*/
     & > :first-child {
         background-color: ${props => 
@@ -15,6 +16,10 @@ const Container = styled.div<ContainerProps>`
         };
         height: 100%;
         border-radius: 24px;
+    }
+
+    @media (min-width: 768px){
+        padding:56px; 
     }
 `
 
