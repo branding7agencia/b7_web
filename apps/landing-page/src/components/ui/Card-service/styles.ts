@@ -8,7 +8,6 @@ export const StyleCardService = styled.div`
     gap: 32px;
     width: 312px;
     background-color: ${theme.colors.fundo2};
-    border: 1px solid red;
     border-radius: 16px;
     padding: 24px;
 

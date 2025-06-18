@@ -22,6 +22,13 @@ animation: ${scrollAnimation} 20s linear infinite;
         flex-shrink: 0;
         margin:  0 40px;
     }
+
+    @media (min-width: 768px) {
+        img{
+        width: 140px;
+        margin: 0 40px;
+    }
+    }
 `
 
 export const CarroselConatiner = styled.div`

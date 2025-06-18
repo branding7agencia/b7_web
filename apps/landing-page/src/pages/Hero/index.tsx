@@ -27,7 +27,7 @@ const Hero = () => {
     return (
         <StyleHero>
         <div className="title">
-            <h1>BRANDING 7</h1>
+            <h1>BRANDING7</h1>
             <p>O sucesso é a nossa marca!</p>
         </div>
         <div className="analisis">

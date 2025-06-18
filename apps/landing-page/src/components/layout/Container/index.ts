@@ -6,7 +6,7 @@ interface ContainerProps {
 }
 
 const Container = styled.div<ContainerProps>`
-    height: 100vh;
+    height: auto;
     padding:24px; 
     
     /*Selecionando o filho direto e aplicando estilos base*/
@@ -20,6 +20,7 @@ const Container = styled.div<ContainerProps>`
 
     @media (min-width: 768px){
         padding:56px; 
+        height: 100vh;
     }
 `
 
