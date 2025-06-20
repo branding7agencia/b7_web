@@ -1,4 +1,4 @@
-# ADR-02: Como Criar uma Nova Aplicação no Monorepo
+# ADR-01: Como Criar uma Nova Aplicação frontend no Monorepo
 
 - **Status**: Aceito
 - **Data**: 2025-06-07
@@ -6,10 +6,14 @@
 
 ## Contexto e Problema
 
-Para manter a consistência e acelerar o desenvolvimento de novas features ou produtos, precisamos de um processo padronizado para criar novas aplicações (apps) dentro do nosso monorepo. Este guia define o passo a passo para configurar uma nova aplicação React com o nosso stack tecnológico padrão:
+Para manter a consistência e acelerar o desenvolvimento de novas features ou produtos, precisamos de um processo padronizado para criar novas aplicações (apps) dentro do nosso monorepo.
+Este guia define o passo a passo para configurar uma nova aplicação.
+
+**Configurar uma aplicação frontend React:**
 
 - **UI Library**: React
 - **Build Tool**: Vite
+- **Tipagem**: Typescript
 - **Estilização**: Styled Components
 - **Roteamento**: React Router DOM
 - **Gerenciamento de Estado**: React Redux com Redux Toolkit
@@ -20,9 +24,9 @@ Toda nova aplicação web no monorepo será criada seguindo os passos detalhados
 
 ---
 
-## Tutorial: Criando um Novo App
+## Tutorial: Criando um Novo App frontend
 
-Siga este guia para adicionar uma nova aplicação ao monorepo.
+Siga este guia para adicionar uma nova aplicação front ao monorepo.
 
 ### Pré-requisitos
 
@@ -41,17 +45,16 @@ Siga este guia para adicionar uma nova aplicação ao monorepo.
 
 Vamos usar o Vite para gerar o boilerplate inicial da nossa aplicação React com TypeScript.
 
-1.  Navegue até a pasta de aplicações (geralmente `apps/` ou `packages/`).
+1.  Na pasta raiz do monorepo
 2.  Execute o comando de criação do Vite. Substitua `<nome-do-app>` pelo nome da sua nova aplicação (ex: `portal-cliente`, `app-admin`).
 
-```bash
-# Navegue até a pasta de apps
-cd apps
-
-# Execute o create-vite
+# Execute o create-vite na raiz do projeto (B7_web)
 # O "--" é importante para passar os argumentos para o script do Vite
-npm create vite@latest <nome-do-app> -- --template react-ts
-```
+
+Bash
+``
+npm create vite@latest apps/meu-novo-produto -- --template react-ts
+``
 
 Após executar, você terá uma nova pasta `apps/<nome-do-app>` com a estrutura básica do React + TypeScript.
 
@@ -74,6 +77,7 @@ Abra o arquivo `apps/<nome-do-app>/package.json` e ajuste-o.
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -100,14 +104,13 @@ Abra o arquivo `apps/<nome-do-app>/package.json` e ajuste-o.
 Agora, vamos adicionar `styled-components`, `react-router-dom` e `react-redux`.
 
 ```bash
-# Navegue para a pasta do novo app
-cd <nome-do-app>
 
 # Instale as dependências de produção, as opções informadas a abaixo são um exemplo, mas instale somente as que realmente serão usados pelo projeto.
-npm install styled-components react-router-dom react-redux @reduxjs/toolkit
+# Na pasta raiz do seu projeto execute o comando:
+npm install styled-components react-router-dom react-redux --workspace=@b7-web/landing-page
 
 # Instale as tipagens para desenvolvimento
-npm install @types/styled-components --save-dev
+npm install @types/styled-components @types/react-router-dom -D --workspace=@b7-web/landing-page
 ```
 
 ### Passo 4: Estrutura de Pastas Inicial
@@ -121,17 +124,28 @@ src/
 |   |-- routes.tsx       # Definição das rotas da aplicação
 |
 |-- components/          # Componentes reutilizáveis (ex: Button, Input)
-|   |-- index.ts
+|   |-- ui/
+|   |     |-- Button/
+|   |           |-- index.tsx
+|   |           |-- styles.ts 
+|   |-- layout/
+|         |-- Login/
+|               |-- index.tsx
+|               |-- styles.ts
 |
-|-- features/            # Lógica de negócio e estado por feature (ex: auth, products)
+|-- features/ (A depender do projeto)   # Lógica de negócio e estado por feature (ex: auth, products)
 |   |-- auth/
 |   |   |-- authSlice.ts
 |   |   |-- Login.tsx
 |
-|-- pages/               # Componentes de página, que montam as telas
-|   |-- HomePage.tsx
-|   |-- LoginPage.tsx
+|-- routes/
+|     |-- routes.tsx
 |
+|-- pages/            # Componentes de página, que montam as telas
+|   |-- HomePage/
+|   |     |--index.tsx
+|   |     |--styles.ts
+|   
 |-- styles/              # Estilos globais, tema, etc.
 |   |-- GlobalStyles.ts
 |   |-- theme.ts

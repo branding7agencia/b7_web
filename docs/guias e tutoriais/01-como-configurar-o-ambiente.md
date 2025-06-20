@@ -7,8 +7,9 @@ Bem-vindo(a) ao projeto! Este guia contém todos os passos necessários para con
 Antes de começar, garanta que você tenha as seguintes ferramentas instaladas na sua máquina.
 
 - **Git:** Essencial para controle de versão.
-- **Node.js:** O projeto requer a versão 18 ou superior, conforme definido no `package.json`. Ao instalar o Node.js, o `npm` (nosso gerenciador de pacotes) já será instalado junto.
-  - Você pode baixar a versão mais recente do Node.js [aqui](https://nodejs.org/en/download).
+- **Node.js:** O projeto requer a versão 18 ou superior, conforme definido no `package.json`. Ao   instalar o Node.js, o `npm` (nosso gerenciador de pacotes) já será instalado junto.
+- Você pode baixar a versão mais recente do Node.js [aqui](https://nodejs.org/en/download).
+- **Python:** Versão Mínima Python 3.9+
 
 ## 2. Passos para a Instalação
 
@@ -57,9 +58,15 @@ Para iniciar todas as aplicações no modo de desenvolvimento, execute o seguint
 
 ```bash
 npm run dev
-```
 
 Este comando usa o script `dev` do `package.json`, que por sua vez executa `turbo run dev` para iniciar os servidores de todas as aplicações de forma otimizada e paralela.
+
+```
+Para iniciar uma apliação específica em modo de desenvolvimento, execute o seguinte comando na raiz do projeto:
+
+```bash
+npm -w <nome-do-projeto> run dev 
+```
 
 ## 4. Comandos Úteis
 
